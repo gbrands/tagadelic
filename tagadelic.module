@@ -1,5 +1,5 @@
 <?php
-// $Id: tagadelic.module,v 1.13 2005/10/27 12:34:50 ber Exp $
+// $Id: tagadelic.module,v 1.12.2.1 2005/10/27 12:56:06 ber Exp $
 
 /**
  * Implementation of hook_help
@@ -83,7 +83,7 @@ function tagadelic_page_chunk() {
 
   $output = "<div class=\"wrapper tagadelic\">$output</div>";
 
-  return $output;
+  print theme('page', $output);
 }
 
 /**
@@ -224,16 +224,11 @@ function tagadelic_block($op = 'list', $delta = O) {
       $blocks['subject'] = t('tags in %voc', array('%voc' => $voc->name));
       $blocks['content'] = theme('tagadelic_weighted', tagadelic_get_weighted_tags(array($voc->vid),6, 12));//return a chunk of 12 tags
     }
-    elseif(arg(0) == 'node' && is_numeric(arg(1)) && $node = node_load(arg(1))) {
-      $blocks['subject'] = t('tags for %title', array('%title' => check_plain($node->title)));
-      $blocks['content'] = tagadelic_tags_lists($node);
-    }
   }
   elseif ($op == 'list') {
     foreach(taxonomy_get_vocabularies() as $voc) {
       $blocks[$voc->vid]['info'] = t('tags in %voc', array('%voc' => $voc->name));
     }
-    $blocks[0]['info'] = t('tags for the current post');
   }
   return $blocks;
 }
