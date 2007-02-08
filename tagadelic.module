@@ -1,5 +1,5 @@
 <?php
-// $Id: tagadelic.module,v 1.19.2.3 2006/06/13 19:35:35 ber Exp $
+// $Id: tagadelic.module,v 1.19.2.4 2007/02/08 09:55:56 ber Exp $
 
 /**
  * Implementation of hook_help
@@ -248,6 +248,15 @@ function theme_tagadelic_weighted($terms) {
 }
 
 /**
+ * theme function to provide a more link
+ * @param $vid - vocab id for which more link is wanted
+ * @ingroup themable
+ */
+function theme_tagadelic_more($vid) {
+  return "<div class='more-link'>" . l(t('more tags'), "tagadelic/chunk/$vid") . "</div>";
+}
+
+/**
  * implementation of hook_block
  */
 function tagadelic_block($op = 'list', $delta = O, $edit = array()) {
@@ -255,6 +264,7 @@ function tagadelic_block($op = 'list', $delta = O, $edit = array()) {
     if ($voc = taxonomy_get_vocabulary($delta)) {
       $blocks['subject'] = variable_get('tagadelic_block_title_'. $delta, t('tags in %voc', array('%voc' => $voc->name)));
       $blocks['content'] = theme('tagadelic_weighted', tagadelic_get_weighted_tags(array($voc->vid),6, variable_get('tagadelic_block_tags_'. $delta, 12)));//return a chunk of 12 tags
+      $blocks['content'] .= theme('tagadelic_more', $voc->vid);//add more link
     }
     elseif(arg(0) == 'node' && is_numeric(arg(1)) && $node = node_load(arg(1))) {
       $blocks['subject'] = t('tags for %title', array('%title' => check_plain($node->title)));
