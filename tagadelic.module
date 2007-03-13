@@ -1,5 +1,5 @@
 <?php
-// $Id: tagadelic.module,v 1.36.2.2 2007/02/08 10:01:42 ber Exp $
+// $Id: tagadelic.module,v 1.36.2.3 2007/03/13 09:58:31 ber Exp $
 
 /**
  * Implementation of hook_help
@@ -16,9 +16,6 @@ function tagadelic_help($section) {
  */
 function tagadelic_menu($may_cache) {
   $items = array();
-
-  $stylesheet = drupal_get_path('module','tagadelic') .'/tagadelic.css';
-  drupal_add_css($stylesheet, 'all');
 
   if ($may_cache) {
     $items[] = array(
@@ -54,6 +51,10 @@ function tagadelic_menu($may_cache) {
         'access' => user_access('access content'),
         'type' => MENU_SUGGESTED_ITEM);
     }
+  }      
+  else {
+    // We put this in !$may_cache so it's only added once per request
+    drupal_add_css(drupal_get_path('module','tagadelic') .'/tagadelic.css');
   }
   return $items;
 }
