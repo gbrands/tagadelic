@@ -1,5 +1,5 @@
 <?php
-// $Id: tagadelic.module,v 1.36.2.6 2007/12/07 12:10:04 ber Exp $
+// $Id: tagadelic.module,v 1.36.2.7 2007/12/07 12:24:01 ber Exp $
 
 /**
  * Implementation of hook_help
@@ -78,9 +78,9 @@ function tagadelic_settings() {
   $form['tagadelic_page_amount'] = array(
     '#type' => 'textfield',
     '#size' => 5,
-    '#title' => t('Amount of tags'),
+    '#title' => t('Amount of tags on the pages'),
     '#default_value' => variable_get('tagadelic_page_amount', '60'),
-    '#description' => t('The amount of tags that will show up in a cloud.'),
+    '#description' => t('The amount of tags that will show up in a cloud on the pages. Amount of tags in blocks must be configured in the block settings of the various cloud blocks.'),
   );
   $form['tagadelic_levels'] = array(
     '#type' => 'textfield',
