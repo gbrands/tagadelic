@@ -1,5 +1,5 @@
 <?php
-// $Id: tagadelic.module,v 1.36.2.4 2007/12/07 11:40:12 ber Exp $
+// $Id: tagadelic.module,v 1.36.2.5 2007/12/07 11:46:52 ber Exp $
 
 /**
  * Implementation of hook_help
@@ -289,7 +289,7 @@ function _tagadelic_sort_by_weight($a, $b) {
  */
 function theme_tagadelic_weighted($terms) {
   foreach ($terms as $term) {
-    $output .= l($term->name, taxonomy_term_path($term), array('class'=>"tagadelic level$term->weight")) ." \n";
+    $output .= l($term->name, taxonomy_term_path($term), array('class'=>"tagadelic level$term->weight", 'rel'=>'tag')) ." \n";
   }
   return $output;
 }
