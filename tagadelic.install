@@ -1,0 +1,18 @@
+<?php
+// $Id: tagadelic.install,v 1.1.4.2 2009/05/13 17:37:27 ber Exp $
+
+/**
+ * Implementaton of hook_install
+ */
+function tagadelic_install() {
+  // nothing to do
+}
+
+/**
+ * Implementaton of hook_uninstall
+ */
+function tagadelic_uninstall() {
+  db_query("DELETE FROM {variable} WHERE name LIKE 'tagadelic_%'");
+  db_query("DELETE FROM {blocks} WHERE module = 'tagadelic'");
+  db_query("DELETE FROM {system} WHERE name = 'tagadelic'");
+}
