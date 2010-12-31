@@ -15,7 +15,11 @@ function tagadelic_update_6100() {
   // We want to remove cache entries that were added as CACHE_PERMANENT. The
   // cid's depend on the taxonomies involved but we can just remove anything
   // with a cid prefixed tagadelic_cache_
-  $ret[] = update_sql("DELETE FROM {cache} WHERE cid LIKE 'tagadelic_cache_%'");
+  // TODO update_sql has been removed. Use the database API for any schema or data changes.
+  $ret[] = array() /* update_sql("DELETE FROM {cache} WHERE cid LIKE 'tagadelic_cache_%'") */;
 
-  return $ret;
+  // hook_update_N() no longer returns a $ret array. Instead, return
+  // nothing or a translated string indicating the update ran successfully.
+  // See http://drupal.org/node/224333#update_sql.
+  return t('TODO Add a descriptive string here to show in the UI.') /* $ret */;
 }

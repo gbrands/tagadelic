@@ -6,7 +6,9 @@ dependencies[] = taxonomy
 package = "Taxonomy"
 configure = admin/config/content/tagadelic
 
-files[] = tagadelic.module
-files[] = tagadelic.install
+
 
 configure = admin/config/content/tagadelic
+
+files[] = tagadelic.install
+files[] = tagadelic.module
